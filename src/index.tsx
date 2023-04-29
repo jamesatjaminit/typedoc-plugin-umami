@@ -1,10 +1,9 @@
 import type { Application } from "typedoc";
 import { ParameterType, JSX } from "typedoc";
 export function load(app: Application) {
-  // https://umami.is/docs/tracker-configuration
   app.options.addDeclaration({
     name: "umamiOptions",
-    help: "The script URL for the Umami analytics script",
+    help: "Umami Plugin Options",
     type: ParameterType.Object,
     defaultValue: {},
   });
@@ -40,6 +39,7 @@ export function load(app: Application) {
       contents += `data-domains="${domains}"`;
     }
 
+    contents = contents.trimEnd();
     return <JSX.Raw html={`<script async ${contents}></script>`}></JSX.Raw>;
   });
 }
