@@ -1,7 +1,7 @@
 {
   "name": "typedoc-plugin-umami",
   "description": "A plugin for Typedoc that adds Umami analytics to your documentation",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "main": "dist/index.js",
   "keywords": [
     "typedoc-plugin"
@@ -11,9 +11,12 @@
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
-    "typedoc": "^0.23.0"
+    "typedoc": "^0.24.2"
   },
   "scripts": {
     "build": "tsc"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }

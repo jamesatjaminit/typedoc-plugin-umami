@@ -1,24 +1,46 @@
 import type { Application } from "typedoc";
 import { ParameterType, JSX } from "typedoc";
 export function load(app: Application) {
+  // https://umami.is/docs/tracker-configuration
   app.options.addDeclaration({
-    name: "umamiScriptSrc",
+    name: "umamiOptions",
     help: "The script URL for the Umami analytics script",
-    type: ParameterType.String,
+    type: ParameterType.Object,
+    defaultValue: {},
   });
-  app.options.addDeclaration({
-    name: "umamiWebsiteId",
-    help: "The website ID for the Umami analytics script",
-    type: ParameterType.String,
-  });
+
   app.renderer.hooks.on("head.begin", (ctx) => {
-    const src = ctx.options.getValue("umamiScriptSrc");
-    const id = ctx.options.getValue("umamiWebsiteId");
-    return (
-      <JSX.Raw
-        html={`<script async src="${src}" data-website-id="${id}"></script>`}
-      ></JSX.Raw>
-    );
+    const options = ctx.options.getValue("umamiOptions") as Record<
+      string,
+      string
+    >;
+    let { src, websiteId, hostUrl, autoTrack, doNotTrack, dataCache, domains } =
+      options;
+    let contents = "";
+    contents += `src="${src}" data-website-id="${websiteId}" `;
+
+    if (hostUrl) {
+      contents += `data-host-url="${hostUrl}" `;
+    }
+
+    if (autoTrack) {
+      contents += `data-auto-track="${autoTrack}" `;
+    }
+
+    if (doNotTrack) {
+      contents += `data-do-not-track="${doNotTrack}" `;
+    }
+
+    if (dataCache) {
+      contents += `data-cache="${dataCache}" `;
+    }
+
+    if (domains) {
+      if (Array.isArray(domains)) domains = domains.join(",");
+      contents += `data-domains="${domains}"`;
+    }
+
+    return <JSX.Raw html={`<script async ${contents}></script>`}></JSX.Raw>;
   });
 }
 
