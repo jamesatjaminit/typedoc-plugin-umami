@@ -1,8 +1,18 @@
 {
   "name": "typedoc-plugin-umami",
   "description": "A plugin for Typedoc that adds Umami analytics to your documentation",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "dist/index.js",
+  "license": "MIT",
+  "homepage": "https://github.com/jamesatjaminit/typedoc-plugin-umami/#readme",
+  "author": {
+    "name": "James Cook",
+    "email": "james@jaminit.co.uk"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamesatjaminit/typedoc-plugin-umami.git"
+  },
   "keywords": [
     "typedoc-plugin"
   ],
