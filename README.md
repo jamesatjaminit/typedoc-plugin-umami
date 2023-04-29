@@ -10,7 +10,7 @@ npm install typedoc-plugin-umami
 
 ### typedoc.json
 
-```json
+```jsonc
 {
   "plugin": ["typedoc-plugin-umami"],
   "umamiOptions": {
