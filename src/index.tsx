@@ -1,4 +1,5 @@
-import { Application, JSX, ParameterType } from "typedoc";
+import type { Application } from "typedoc";
+import { ParameterType, JSX } from "typedoc";
 export function load(app: Application) {
   app.options.addDeclaration({
     name: "umamiScriptSrc",
@@ -10,12 +11,9 @@ export function load(app: Application) {
     help: "The website ID for the Umami analytics script",
     type: ParameterType.String,
   });
-  const src = app.options.getValue("umamiScriptSrc");
-  const id = app.options.getValue("umamiWebsiteId");
-  if (!src || !id) {
-    return;
-  }
   app.renderer.hooks.on("head.begin", (ctx) => {
+    const src = ctx.options.getValue("umamiScriptSrc");
+    const id = ctx.options.getValue("umamiWebsiteId");
     return (
       <JSX.Raw
         html={`<script async src="${src}" data-website-id="${id}"></script>`}
