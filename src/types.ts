@@ -1,6 +1,6 @@
 import type { TypeDocOptions as ImportedTypeDocOptions } from "typedoc";
 
-export interface TypeDocOptions extends ImportedTypeDocOptions {
+export interface UmamiTypeDocOptions {
   umamiOptions: {
     src?: string;
     websiteId?: string;
@@ -11,3 +11,5 @@ export interface TypeDocOptions extends ImportedTypeDocOptions {
     domains?: string[];
   };
 }
+
+export type TypeDocOptions = ImportedTypeDocOptions & UmamiTypeDocOptions;
