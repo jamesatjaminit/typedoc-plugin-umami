@@ -1,6 +1,6 @@
 {
   "name": "typedoc-plugin-umami",
-  "description": "A plugin for Typedoc that adds Umami analytics to your documentation",
+  "description": "Plugin for TypeDoc which adds Umami analytics support",
   "version": "1.2.2",
   "main": "dist/index.js",
   "license": "MIT",
